@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "78002558379",
+    "project_id": "event-manager-flutter",
+    "storage_bucket": "event-manager-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78002558379:android:d8670a537695422239aeee",
+        "android_client_info": {
+          "package_name": "com.example.event_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78002558379-ni03vvor18c6f8gm4sdf77ukri5b7pfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR3pSa11xsmRaY77d7IMA9Gm_KD8Dths8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78002558379-ni03vvor18c6f8gm4sdf77ukri5b7pfm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "78002558379-1qiafa2785smqd45561i0lbu7tr1sns7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.eventManager"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
