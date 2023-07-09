@@ -1,6 +1,6 @@
+import 'package:event_manager/custom_nav_bar/nav_bar_1/custom_nav_bar.dart';
+import 'package:event_manager/theme/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,14 +16,7 @@ class _HomeScreenState extends State<HomeScreen>
     super.initState();
 
     _tabController = TabController(length: _screens.length, vsync: this);
-    _tabController.addListener(() {
-      setState(() {
-        _currentIndex = _tabController.index;
-      });
-    });
   }
-
-  int _currentIndex = 0;
 
   final List<Widget> _screens = [
     // Replace these with your actual screens
@@ -33,59 +26,30 @@ class _HomeScreenState extends State<HomeScreen>
   ];
 
   late TabController _tabController;
-  void _onTabTapped(int index) {
-    setState(() {
-      _tabController.index = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
+      backgroundColor: secondary,
       body: TabBarView(
         controller: _tabController,
         children: _screens,
       ),
-      bottomNavigationBar: const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: GNav(
-          backgroundColor: Colors.blue,
-          color: Colors.white,
-          activeColor: Colors.black,
-          tabBackgroundColor: Colors.grey,
-          gap: 8,
-          padding: EdgeInsets.all(15),
-          tabs: [
-            GButton(
-              icon: Icons.home,
-              text: "Home",
-            ),
-            GButton(
-              icon: Icons.search,
-              text: "search",
-            ),
-            GButton(
-              icon: Icons.people,
-              text: "profile",
-            ),
-          ],
-        ),
+      bottomNavigationBar: CustomTabBar(
+        tabController: _tabController,
+        tabs: const [
+          Tab(
+            icon: Icon(Icons.home),
+          ),
+          Tab(
+            icon: Icon(Icons.search),
+          ),
+          Tab(
+            icon: Icon(Icons.people),
+          ),
+        ],
+        onTap: (value) {},
       ),
-      // bottomNavigationBar: CurvedNavigationBar(
-      //   index: _tabController.index,
-      //   color: Colors.blue,
-      //   backgroundColor: Colors.white,
-      //   animationDuration: const Duration(milliseconds: 200),
-      //   onTap: _onTabTapped,
-      //   items: const [
-      //     Icon(Icons.home),
-      //     Icon(Icons.search),
-      //     Icon(Icons.person),
-      //   ],
-      // ));
     );
   }
 }
