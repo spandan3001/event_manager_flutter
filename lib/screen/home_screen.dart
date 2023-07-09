@@ -1,4 +1,5 @@
 import 'package:event_manager/custom_nav_bar/nav_bar_1/custom_nav_bar.dart';
+import 'package:event_manager/screen/profile_screen.dart';
 import 'package:event_manager/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen>
     // Replace these with your actual screens
     const Screen1(),
     const Screen2(),
-    const Screen3(),
+    const ProfileScreen(),
   ];
 
   late TabController _tabController;
@@ -30,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: secondary,
+      backgroundColor: primary,
       body: TabBarView(
         controller: _tabController,
         children: _screens,

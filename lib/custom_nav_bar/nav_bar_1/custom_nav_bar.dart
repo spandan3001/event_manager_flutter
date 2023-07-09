@@ -19,7 +19,7 @@ class CustomTabBar extends StatelessWidget {
       height: (MediaQuery.of(context).size.height / 100) * 5,
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       decoration: const BoxDecoration(
-        color: primary,
+        color: secondary,
         borderRadius: BorderRadius.all(Radius.circular(5)),
       ),
       child: Center(
