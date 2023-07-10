@@ -4,12 +4,23 @@ import 'package:flutter/material.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
-  final double clipHeight = 250;
+  final double clipHeight = 150;
   final double profileImageHeight = 160;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: buttonColor,
+        shadowColor: Colors.transparent,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.logout))
+        ],
+      ),
       backgroundColor: primary,
       body: Stack(
         clipBehavior: Clip.none,

@@ -1,3 +1,4 @@
+import 'package:event_manager/controllers/auth_controller.dart';
 import 'package:event_manager/screen/home_screen.dart';
 import 'package:event_manager/screen/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,7 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isVisible = false;
-  String _error = "";
 
   @override
   void dispose() {
@@ -124,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             decoration: InputDecoration(
                                 prefixIcon:
                                     const Icon(Icons.lock_outline_rounded),
-                                prefixIconColor: Colors.black,
+                                prefixIconColor: black,
                                 suffixIcon: IconButton(
                                   splashColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
@@ -137,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ? Icons.visibility_rounded
                                       : Icons.visibility_off_rounded),
                                 ),
-                                suffixIconColor: Colors.black,
+                                suffixIconColor: black,
                                 hintText: "Password",
                                 border: InputBorder.none),
                             validator: (value) {
@@ -153,13 +153,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 24.0),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
-                      ),
-                    );
-                    _signIn();
+                    AuthController.instance.login(_formKey,
+                        _emailController.text.trim(), _passwordController.text);
                   },
                   child: Container(
                     padding: const EdgeInsets.all(16),
@@ -178,11 +173,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                if (_error.isEmpty)
-                  Text(
-                    _error,
-                    style: const TextStyle(color: Colors.red),
-                  ),
                 Padding(
                   padding: const EdgeInsets.only(left: 26.0, right: 26.0),
                   child: Row(
@@ -224,27 +214,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-  }
-
-  void _signIn() async {
-    if (_formKey.currentState!.validate()) {
-      try {
-        UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-          email: _emailController.text.trim(),
-          password: _passwordController.text,
-        );
-        // Navigate to the home screen or do any other logic here
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          setState(() {
-            _error = 'No user found for that email.';
-          });
-        } else if (e.code == 'wrong-password') {
-          setState(() {
-            _error = 'Wrong password provided for that user.';
-          });
-        }
-      }
-    }
   }
 }
